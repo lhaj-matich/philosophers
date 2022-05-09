@@ -1,8 +1,11 @@
 #include "philosophers.h"
 
-void    app_error(void)
+void    app_error(int code)
 {
-    printf("Error: app crashed\n");
+    if (code == 1)
+		printf("Error: Invalid Arguments\n");
+	else if (code == 2)
+		printf("Error: Invalid number of arguments\n");
     exit(1);
 }
 
@@ -15,10 +18,10 @@ int	ft_atoi(const char *str)
 	i = 0;
 	res = 0;
 	sign = 1;
-	if (!(str[i] == 32 || (str[i] >= 9 && str[i] <= 13)))
-		app_error();
+	if (!str)
+		return (0);
 	if (str[i] == '-')
-		app_error();
+		app_error(1);
 	else if (str[i] == '+')
 		i++;
 	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
@@ -27,4 +30,14 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (res * sign);
+}
+
+long	ft_convert_ms(t_timeval timestamp)
+{
+	return (timestamp.tv_sec * 1000);
+}
+
+void    print_message(t_timeval timestamp, t_philo *philo, char *state)
+{
+    printf("%ld %d is %s\n",ft_convert_ms(timestamp), philo->id, state);
 }

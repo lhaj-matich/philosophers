@@ -6,7 +6,7 @@
 
 void    parse_args(int argc, char **argv, t_data *data)
 {
-    if (argc <= 6)
+    if (argc > 1)
     {
         data->time_to_sleep = ft_atoi(argv[4]);
         data->time_to_die = ft_atoi(argv[2]);
@@ -16,6 +16,5 @@ void    parse_args(int argc, char **argv, t_data *data)
     else if (argc == 6)
         data->must_eat_number = ft_atoi(argv[5]);
     else
-        app_error();
-
+        app_error(2);
 }
