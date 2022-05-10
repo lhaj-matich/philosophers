@@ -12,6 +12,7 @@ void    parse_args(int argc, char **argv, t_data *data)
         data->time_to_die = ft_atoi(argv[2]);
         data->time_to_eat = ft_atoi(argv[3]);
         data->philos_number = ft_atoi(argv[1]);
+      
     }
     else if (argc == 6)
         data->must_eat_number = ft_atoi(argv[5]);

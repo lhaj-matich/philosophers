@@ -32,12 +32,12 @@ int	ft_atoi(const char *str)
 	return (res * sign);
 }
 
-long	ft_convert_ms(t_timeval timestamp)
+long	ft_convert_ms(struct timeval timestamp)
 {
 	return (timestamp.tv_sec * 1000);
 }
 
-void    print_message(t_timeval timestamp, t_philo *philo, char *state)
+void    print_message(struct timeval timestamp, t_philo *philo, char *state)
 {
     printf("%ld %d is %s\n",ft_convert_ms(timestamp), philo->id, state);
 }
