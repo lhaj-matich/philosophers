@@ -13,6 +13,7 @@
 //? This struct will contain simulation data.
 typedef struct s_data 
 {
+    struct s_philo *philos;
     int philos_number;
     int time_to_die;
     int time_to_eat;
@@ -45,6 +46,6 @@ int     ft_atoi(const char *str);
 long	ft_convert_ms(struct timeval timestamp);
 void    print_message(struct timeval timestamp, t_philo *philo, char *state);
 //* Checker functions:
-t_philo *create_philos(t_data *data);
+void    create_philos(t_data *data);
 void    start_sim(t_data *data);
 #endif
