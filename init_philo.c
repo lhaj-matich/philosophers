@@ -47,6 +47,7 @@ void    start_sim(t_data *data)
 
     i = 0;
     create_philos(data);
+    setup_state(data);
     while (i < data->philos_number)
     {
         pthread_create(&data->philos[i].thread, NULL, philo, &data->philos[i]);

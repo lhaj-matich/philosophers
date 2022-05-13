@@ -15,22 +15,23 @@ typedef struct s_data
 {
     struct s_philo *philos;
     int philos_number;
+    int number_eat;
     int time_to_die;
     int time_to_eat;
     int time_to_sleep;
     int must_eat_number; //? This is the number of times that each philosopher must eat.
-    int state; //? This variable controls weather the simulation is over or not.
+    int finished; //? This variable controls weather the simulation is over or not.
     pthread_mutex_t *forks;
-    pthread_mutex_t set_state;
+    pthread_mutex_t set_finished;
 } t_data;
 
 //? This struct will contain philosopher data.
 typedef struct s_philo 
 {
     struct timeval last_eat;
-    int id;
-    int number_eat; //? This number is the number of times a philosopher has eaten.
+    int id; 
     int state;
+    int finished;
     pthread_t thread;
     pthread_mutex_t right_hand;
     pthread_mutex_t left_hand;

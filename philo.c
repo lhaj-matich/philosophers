@@ -8,6 +8,6 @@ void    thinking(int period)
 void    *philo(void *data)
 {
     // printf("Printing something\n");
-    printf("Philo %d Can eat for: %d Started: %ld\n", (int)((t_philo *)data)->id, (int)((t_philo *)data)->data->time_to_eat, (long)((t_philo *)data)->last_eat.tv_sec);
+    printf("Philo %d Can eat for: %d Started: %ld State: %d\n", (int)((t_philo *)data)->id, (int)((t_philo *)data)->data->time_to_eat, (long)((t_philo *)data)->last_eat.tv_sec, (int)((t_philo *)data)->state);
     return NULL;
 }
