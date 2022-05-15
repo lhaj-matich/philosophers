@@ -37,7 +37,7 @@ int	ft_atoi(const char *str)
 
 long	ft_convert_ms(struct timeval timestamp)
 {
-	return (timestamp.tv_sec * 1000);
+	return (timestamp.tv_usec / 1000);
 }
 
 void    print_message(struct timeval timestamp, t_philo *philo, char *state)
