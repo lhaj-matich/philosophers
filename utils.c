@@ -35,6 +35,21 @@ int	ft_atoi(const char *str)
 	return (res * sign);
 }
 
+void	ft_sleep(long time)
+{
+	long wait;
+	struct timeval now;
+	struct timeval req;
+
+	gettimeofday(&now, NULL);
+
+	while (wait < time)
+	{
+		wait = (req.tv_usec - now.tv_usec) / 1000;
+		usleep(50);
+	}
+}
+
 long	ft_convert_ms(struct timeval timestamp)
 {
 	return (timestamp.tv_usec / 1000);

@@ -20,7 +20,6 @@ int main(int argc,char **argv)
         data = init_data();
         parse_args(argc, argv, data);
         create_philos(data);
-        setup_state(data);
         start_sim(data);
     }
     else

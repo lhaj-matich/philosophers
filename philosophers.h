@@ -7,9 +7,6 @@
 #include <sys/time.h>
 #include <unistd.h> // For using the usleep function
 
-#define THINKING 1
-#define EATING 2
-
 //? This struct will contain simulation data.
 typedef struct s_data 
 {
@@ -28,10 +25,8 @@ typedef struct s_data
 //? This struct will contain philosopher data.
 typedef struct s_philo 
 {
-    struct timeval last_eat;
     int id; 
-    int state;
-    int finished;
+    struct timeval last_eat;
     pthread_t thread;
     pthread_mutex_t right_hand;
     pthread_mutex_t left_hand;
@@ -49,4 +44,5 @@ void    print_message(struct timeval timestamp, t_philo *philo, char *state);
 //* Checker functions:
 void    create_philos(t_data *data);
 void    start_sim(t_data *data);
+
 #endif
