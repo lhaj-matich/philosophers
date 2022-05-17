@@ -18,15 +18,16 @@ typedef struct s_data
     int time_to_sleep;
     int must_eat_number; //? This is the number of times that each philosopher must eat.
     int finished; //? This variable controls weather the simulation is over or not.
+    int start_time;
     pthread_mutex_t *forks;
-    pthread_mutex_t set_finished;
+    pthread_mutex_t finshed_state;
 } t_data;
 
 //? This struct will contain philosopher data.
 typedef struct s_philo 
 {
     int id; 
-    struct timeval last_eat;
+    long long   last_eat;
     pthread_t thread;
     pthread_mutex_t right_hand;
     pthread_mutex_t left_hand;
@@ -39,8 +40,9 @@ void    *philo(void *data);
 //* Helper functions:
 void    app_error(int code);
 int     ft_atoi(const char *str);
-long	ft_convert_ms(struct timeval timestamp);
-void    print_message(struct timeval timestamp, t_philo *philo, char *state);
+void    print_message(int time, t_philo *philo, char *state);
+long    ft_gettimeday(void);
+void	ft_sleep(long time);
 //* Checker functions:
 void    create_philos(t_data *data);
 void    start_sim(t_data *data);

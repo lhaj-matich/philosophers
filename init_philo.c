@@ -1,5 +1,6 @@
 #include "philosophers.h"
 
+//! This function should be modified because the fork index should start from 0 too.
 void    create_philos(t_data *data)
 {
     int i;
@@ -24,7 +25,6 @@ void    create_philos(t_data *data)
         j += 1;
     }
 }
-
 
 void    start_sim(t_data *data)
 {

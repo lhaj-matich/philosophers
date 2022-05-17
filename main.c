@@ -8,6 +8,7 @@ t_data *init_data()
     if (!data)
         return (NULL);
     data->finished = 0;
+    data->start_time = ft_gettimeday();
     return (data);
 }
 

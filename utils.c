@@ -37,25 +37,22 @@ int	ft_atoi(const char *str)
 
 void	ft_sleep(long time)
 {
-	long wait;
-	struct timeval now;
-	struct timeval req;
+	long starttime;
 
-	gettimeofday(&now, NULL);
-
-	while (wait < time)
-	{
-		wait = (req.tv_usec - now.tv_usec) / 1000;
+	starttime = ft_gettimeday();
+	
+	while ((ft_gettimeday() - starttime) < time)
 		usleep(50);
-	}
 }
 
-long	ft_convert_ms(struct timeval timestamp)
+//? This function will return time in miliseconds.
+long ft_gettimeday(void)
 {
-	return (timestamp.tv_usec / 1000);
+	struct timeval ms;
+	return (ms.tv_usec / 1000 + ms.tv_sec * 1000);
 }
 
-void    print_message(struct timeval timestamp, t_philo *philo, char *state)
+void    print_message(int time, t_philo *philo, char *state)
 {
-    printf("%ld %d is %s\n",ft_convert_ms(timestamp), philo->id, state);
+    printf("%d %d is %s\n",time, philo->id, state);
 }
