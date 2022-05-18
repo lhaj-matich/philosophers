@@ -15,7 +15,6 @@ t_data *init_data()
 
 int main(int argc,char **argv)
 {
-    
     if (argc >= 5)
     {
         t_data *data;

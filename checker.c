@@ -4,7 +4,7 @@
 void    *check_philo_dies(void *data)
 {
     t_philo *philo;
-    long timestamp;
+    long long timestamp;
 
     philo = data;
     while (philo->data->finished != 1)
@@ -16,8 +16,6 @@ void    *check_philo_dies(void *data)
             print_message(ft_gettimeday() - philo->data->start_time, philo, "has died");
             philo->data->finished = 1;
         }
-        /// We are not sure that this is the right place for the mutex to be.
-        /// I will run the code and see if there is some optimizations that could be done.
         pthread_mutex_unlock(&philo->data->finshed_state);
     }
     return (NULL);

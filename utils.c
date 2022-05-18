@@ -42,17 +42,19 @@ void	ft_sleep(long time)
 	starttime = ft_gettimeday();
 	
 	while ((ft_gettimeday() - starttime) < time)
-		usleep(50);
+		usleep(100);
 }
 
 //? This function will return time in miliseconds.
-long ft_gettimeday(void)
+long long ft_gettimeday(void)
 {
 	struct timeval ms;
+	gettimeofday(&ms, NULL);
+
 	return (ms.tv_usec / 1000 + ms.tv_sec * 1000);
 }
 
 void    print_message(int time, t_philo *philo, char *state)
 {
-    printf("%d %d is %s\n",time, philo->id, state);
+    printf("%d %d %s\n",time, philo->id, state);
 }
