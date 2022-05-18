@@ -28,6 +28,7 @@ typedef struct s_philo
 {
     int id; 
     long long   last_eat;
+    int eat_number;
     pthread_t thread;
     pthread_mutex_t right_hand;
     pthread_mutex_t left_hand;
@@ -43,6 +44,8 @@ int     ft_atoi(const char *str);
 void    print_message(int time, t_philo *philo, char *state);
 long    ft_gettimeday(void);
 void	ft_sleep(long time);
+void    *check_philo_dies(void *data);
+void    *check_end_simulation(void *data);
 //* Checker functions:
 void    create_philos(t_data *data);
 void    start_sim(t_data *data);

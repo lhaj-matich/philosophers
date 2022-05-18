@@ -1,9 +1,5 @@
 #include "philosophers.h"
 
-//!Error Handling:
-//!Check that the number of args correspond to 
-//!Don't forget to change the system function with our own function.
-
 void    validate_args(t_data *data)
 {
     if (data->philos_number < 0)
