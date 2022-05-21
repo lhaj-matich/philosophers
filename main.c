@@ -9,7 +9,6 @@ t_data *init_data()
         return (NULL);
     data->finished = 0;
     data->must_eat_number = 0;
-    data->start_time = ft_gettimeday();
     return (data);
 }
 

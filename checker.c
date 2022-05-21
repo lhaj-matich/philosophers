@@ -1,24 +1,21 @@
 #include "philosophers.h"
 
-
-void    *check_philo_dies(void *data)
+int check_philo_dies(t_philo *philo)
 {
-    t_philo *philo;
     long long timestamp;
 
-    philo = data;
+
     while (philo->data->finished != 1)
     {
-        pthread_mutex_lock(&philo->data->finshed_state);
         timestamp = ft_gettimeday() - philo->last_eat;
-        if (timestamp > philo->data->time_to_die && philo->data->finished != 1)
+        if (timestamp >= philo->data->time_to_die && philo->data->finished != 1)
         {
             print_message(ft_gettimeday() - philo->data->start_time, philo, "has died");
             philo->data->finished = 1;
+            return (1);
         }
-        pthread_mutex_unlock(&philo->data->finshed_state);
     }
-    return (NULL);
+    return (0);
 }
 
 void    *check_end_simulation(void *data)

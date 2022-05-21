@@ -7,6 +7,7 @@
 #include <sys/time.h>
 #include <unistd.h> // For using the usleep function
 
+
 //? This struct will contain simulation data.
 typedef struct s_data 
 {
@@ -35,6 +36,7 @@ typedef struct s_philo
     t_data *data;
 } t_philo;
 
+
 //* Parsing functions:
 void    parse_args(int argc, char **argv, t_data *data);
 void    *philo(void *data);
@@ -44,7 +46,7 @@ int     ft_atoi(const char *str);
 void    print_message(int time, t_philo *philo, char *state);
 long long    ft_gettimeday(void);
 void	ft_sleep(long time);
-void    *check_philo_dies(void *data);
+int     check_philo_dies(t_philo *philo);
 void    *check_end_simulation(void *data);
 //* Checker functions:
 void    create_philos(t_data *data);

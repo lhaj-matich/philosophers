@@ -42,7 +42,7 @@ void	ft_sleep(long time)
 	starttime = ft_gettimeday();
 	
 	while ((ft_gettimeday() - starttime) < time)
-		usleep(100);
+		usleep(50);
 }
 
 //? This function will return time in miliseconds.
