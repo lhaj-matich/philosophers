@@ -4,31 +4,28 @@ int check_philo_dies(t_philo *philo)
 {
     long long timestamp;
 
-
-    while (philo->data->finished != 1)
+    timestamp = ft_gettimeday() - philo->last_eat;
+    if (timestamp >= philo->data->time_to_die && philo->data->finished != 1)
     {
-        timestamp = ft_gettimeday() - philo->last_eat;
-        if (timestamp >= philo->data->time_to_die && philo->data->finished != 1)
-        {
-            print_message(ft_gettimeday() - philo->data->start_time, philo, "has died");
-            philo->data->finished = 1;
-            return (1);
-        }
+        print_message(ft_gettimeday() - philo->data->start_time, philo, "has died");
+        philo->data->finished = 1;
+        return (1);
     }
     return (0);
 }
 
-void    *check_end_simulation(void *data)
+int check_end_simulation(t_data *data)
 {
-    t_data *sim;
+    int i;
 
-    sim = data;
-    while (sim->finished != 1)
+    i = 0;
+    while (i < data->philos_number)
     {
-        if (sim->number_eat == sim->must_eat_number)
-        {
-            sim->finished = 1;
-        }
+        if (data->philos[i].eat_number >= data->must_eat_number)
+            i++;
+        else
+            return (0);
     }
-    return (NULL);
+    data->finished = 1;
+    return (1);
 }
