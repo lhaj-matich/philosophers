@@ -10,6 +10,7 @@ void    eating(t_philo *philo)
     print_message((ft_gettimeday() - philo->data->start_time), philo , "is eating");
     ft_sleep(philo->data->time_to_eat);
     pthread_mutex_unlock(philo->left_hand);
+    print_message((ft_gettimeday() - philo->data->start_time), philo , "released a fork");
     pthread_mutex_unlock(philo->right_hand);
 }
 
@@ -24,7 +25,7 @@ void    sleeping(t_philo *philo)
     ft_sleep(philo->data->time_to_sleep);
 }
 
-void    *philo(void *data)
+void    *philo(void *data)                          
 {
     t_philo *philo;
 
