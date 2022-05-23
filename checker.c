@@ -5,7 +5,6 @@ int check_philo_dies(t_philo *philo)
     long long timestamp;
 
     timestamp = ft_gettimeday() - philo->last_eat;
-    // printf("Philo: %d Time left: %lld Time to die: %d\n", philo->id ,timestamp, philo->data->time_to_die);
     if (timestamp > philo->data->time_to_die && philo->data->finished != 1)
     {
         print_message(ft_gettimeday() - philo->data->start_time, philo, "has died");
@@ -25,7 +24,7 @@ int check_end_simulation(t_data *data)
         if (data->philos[i].eat_number >= data->must_eat_number)
             i++;
         else
-            return (0);
+            return (0); // This means that simulation is not over yet.
     }
     data->finished = 1;
     return (1);

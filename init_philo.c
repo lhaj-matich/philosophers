@@ -47,12 +47,12 @@ void    check_philo_dead(t_data *data)
             break ;
         i++;
         if (i == data->philos_number)
+        {
+            if (check_end_simulation(data))
+                exit(0);
             i = 0;
+        }
     }
-    // if (data->must_eat_number != 0)
-    // {
-    //     check_end_simulation(data);
-    // }
 }
 
 void    start_sim(t_data *data)
@@ -64,7 +64,6 @@ void    start_sim(t_data *data)
     {
         pthread_create(&data->philos[i].thread, NULL, philo, &data->philos[i]);
         pthread_detach(data->philos[i].thread);
-        // pthread_join (data->philos[i].thread, NULL);
         i++;
     }
     check_philo_dead(data);

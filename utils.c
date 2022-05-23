@@ -45,7 +45,6 @@ void	ft_sleep(long time)
 		usleep(50);
 }
 
-//? This function will return time in miliseconds.
 long long ft_gettimeday(void)
 {
 	struct timeval ms;
