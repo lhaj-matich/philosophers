@@ -8,7 +8,7 @@ t_data *init_data()
     if (!data)
         return (NULL);
     data->finished = 0;
-    data->must_eat_number = 0;
+    data->must_eat_number = -1;
     return (data);
 }
 

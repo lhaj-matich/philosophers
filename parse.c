@@ -1,6 +1,6 @@
 #include "philosophers.h"
 
-void    validate_args(t_data *data)
+void    validate_args(t_data *data, int argc)
 {
     if (data->philos_number < 0)
         printf("Invalid number of philosophers\n");
@@ -10,7 +10,7 @@ void    validate_args(t_data *data)
         printf("Invalid time to sleep\n ");
     if (data->time_to_eat < 0)
         printf("Invalid time to eat\n");
-    if (data->must_eat_number < 0)
+    if (data->must_eat_number < 0 && argc == 6)
         printf("Invalid numbers of time that a philosopher should eat\n");
 }
 
@@ -22,6 +22,5 @@ void    parse_args(int argc, char **argv, t_data *data)
     data->time_to_die = ft_atoi(argv[2]);
     data->time_to_eat = ft_atoi(argv[3]);
     data->philos_number = ft_atoi(argv[1]);
-    validate_args(data);
+    validate_args(data, argc);
 }
-

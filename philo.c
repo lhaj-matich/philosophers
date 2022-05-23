@@ -16,7 +16,8 @@ void    eating(t_philo *philo)
 
 void    thinking(t_philo *philo)
 {
-    print_message(ft_gettimeday() - philo->data->start_time, philo ,"is thinking");
+    if (philo->data->finished != 1)
+        print_message(ft_gettimeday() - philo->data->start_time, philo ,"is thinking");
 }
 
 void    sleeping(t_philo *philo)
