@@ -55,5 +55,8 @@ long long ft_gettimeday(void)
 
 void    print_message(int time, t_philo *philo, char *state)
 {
+	pthread_mutex_lock(&philo->print);
     printf("%d %d %s\n",time, philo->id, state);
+	if (philo->data->finished != 1)
+		pthread_mutex_unlock(&philo->print);
 }

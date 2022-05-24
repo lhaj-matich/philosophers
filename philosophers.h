@@ -25,12 +25,13 @@ typedef struct s_data
 } t_data;
 
 //? This struct will contain philosopher data.
-typedef struct s_philo 
+typedef struct s_philo
 {
     int id; 
     long long   last_eat;
     int eat_number;
     pthread_t thread;
+    pthread_mutex_t print;
     pthread_mutex_t *right_hand;
     pthread_mutex_t *left_hand;
     t_data *data;
