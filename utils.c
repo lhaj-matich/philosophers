@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:37:09 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/05/26 13:37:46 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/05/28 12:20:26 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@ void	app_error(int code)
 		printf("Error: Invalid Arguments\n");
 	else if (code == 2)
 		printf("Error: Invalid number of arguments\n");
+	else if (code == 3)
+		printf("Error: Invalid number of philosophers\n");
+	else if (code == 4)
+		printf("Error: Invalid time to die\n");
+	else if (code == 5)
+		printf("Error: Invalid time to sleep\n");
+	else if (code == 6)
+		printf("Error: Invalid time to eat\n");
+	else if (code == 7)
+		printf("Error: Invalid numbers of time that a philosopher should eat\n");
 	exit(1);
 }
 

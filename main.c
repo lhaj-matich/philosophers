@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:22:19 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/05/28 11:28:19 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/05/28 12:53:47 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,19 @@ t_data	*init_data(void)
 	return (data);
 }
 
+void	free_simulation(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->philos_number)
+	{
+		pthread_mutex_destroy(&data->forks[i]);
+		i++;
+	}
+	free(data);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -34,6 +47,7 @@ int	main(int argc, char **argv)
 		parse_args(argc, argv, data);
 		create_philos(data);
 		start_sim(data);
+		free_simulation(data);
 	}
 	else
 		app_error(2);
