@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:37:09 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/05/28 12:20:26 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/05/30 12:15:44 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ long long	ft_gettimeday(void)
 
 void	print_message(long time, t_philo *philo, char *state)
 {
-	pthread_mutex_lock(&philo->print);
+	pthread_mutex_lock(&philo->data->check);
 	printf("%ld %d %s\n", time, philo->id, state);
 	if (philo->data->finished != 1)
-		pthread_mutex_unlock(&philo->print);
+		pthread_mutex_unlock(&philo->data->check);
 }

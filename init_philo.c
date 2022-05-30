@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:34:49 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/05/28 11:32:11 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/05/30 12:12:07 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_forks(t_data *data)
 	int	i;
 
 	i = 0;
+	pthread_mutex_init(&data->check, NULL);
 	while (i < data->philos_number)
 	{
 		pthread_mutex_init(&data->forks[i], NULL);

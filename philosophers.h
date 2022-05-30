@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:38:05 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/05/26 15:35:20 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/05/30 12:17:21 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <unistd.h>
+# include <string.h>
 
 typedef struct s_data
 {
@@ -31,7 +32,7 @@ typedef struct s_data
 	int				finished;
 	long long		start_time;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	finshed_state;
+	pthread_mutex_t	check;
 }	t_data;
 
 typedef struct s_philo
@@ -40,16 +41,15 @@ typedef struct s_philo
 	int				eat_number;
 	long long		last_eat;
 	pthread_t		thread;
-	pthread_mutex_t	print;
 	pthread_mutex_t	*right_hand;
 	pthread_mutex_t	*left_hand;
 	t_data			*data;
 }	t_philo;
 
-void		parse_args(int argc, char **argv, t_data *data);
 void		*philo(void *data);
-void		app_error(int code);
+void		parse_args(int argc, char **argv, t_data *data);
 void		print_message(long time, t_philo *philo, char *state);
+void		app_error(int code);
 int			ft_atoi(const char *str);
 int			check_philo_dies(t_philo *philo);
 int			check_end_simulation(t_data *data);

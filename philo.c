@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:35:44 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/05/28 11:46:01 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/05/30 12:07:30 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	thinking(t_philo *philo)
 	char	*ms;
 
 	ms = "is thinking";
-	if (philo->data->finished != 1)
-		print_message(ft_gettimeday() - philo->data->start_time, philo, ms);
+	print_message(ft_gettimeday() - philo->data->start_time, philo, ms);
 }
 
 void	sleeping(t_philo *philo)
 {
 	char	*ms;
+
 
 	ms = "is sleeping";
 	print_message(ft_gettimeday() - philo->data->start_time, philo, ms);
