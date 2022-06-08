@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:37:09 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/08 14:08:28 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/06/08 13:46:18 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	app_error(int code)
 {
 	if (code == 8)
-		printf("Error: Forking the process\n");
+		printf("Error: Forking the process | Semaphore initilization failed\n");
 	if (code == 1)
 		printf("Error: Invalid Arguments\n");
 	else if (code == 2)
@@ -78,8 +78,9 @@ long long	ft_gettimeday(void)
 
 void	print_message(long time, t_philo *philo, char *state)
 {
-	pthread_mutex_lock(&philo->data->check);
+	// Here should be a semaphore
 	printf("%ld %d %s\n", time, philo->id, state);
 	if (philo->data->finished != 1)
-		pthread_mutex_unlock(&philo->data->check);
+		write(1, "c", 1);
+		// Here where i should unlock the semaphore
 }

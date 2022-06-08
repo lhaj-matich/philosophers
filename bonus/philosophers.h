@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:38:05 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/03 13:31:56 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:03:03 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 # include <sys/time.h>
 # include <unistd.h>
 # include <string.h>
+# include <semaphore.h>
+# include <fcntl.h>
+
+# define FORKS_SEM "PHILO_FORKS"
+# define PRINT_SEM "PHILO_PRINT"
 
 typedef struct s_data
 {
@@ -31,22 +36,21 @@ typedef struct s_data
 	int				must_eat_number;
 	int				finished;
 	long long		start_time;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	check;
+	sem_t			*forks;
+	sem_t			*print;
 }	t_data;
 
 typedef struct s_philo
 {
 	int				id;
+	int				pid;
 	int				eat_number;
 	long long		last_eat;
 	pthread_t		thread;
-	pthread_mutex_t	*right_hand;
-	pthread_mutex_t	*left_hand;
 	t_data			*data;
 }	t_philo;
 
-void		*philo(void *data);
+void		philo(t_philo *philo);
 void		parse_args(int argc, char **argv, t_data *data);
 void		print_message(long time, t_philo *philo, char *state);
 void		app_error(int code);

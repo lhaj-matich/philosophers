@@ -6,23 +6,21 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:34:49 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/08 14:03:50 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/06/08 13:58:21 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	init_forks(t_data *data)
+void	init_semaphore(t_data *data)
 {
-	int	i;
+	sem_unlink(FORKS_SEM);
+	sem_unlink(PRINT_SEM);
 
-	i = 0;
-	pthread_mutex_init(&data->check, NULL);
-	while (i < data->philos_number)
-	{
-		pthread_mutex_init(&data->forks[i], NULL);
-		i += 1;
-	}
+	data->print = sem_open(PRINT_SEM, O_CREAT | O_EXCL, 0644, 1);
+	data->forks = sem_open(FORKS_SEM, O_CREAT | O_EXCL, 0644 , data->philos_number);
+	if (data->print == SEM_FAILED || data->forks == SEM_FAILED)
+		app_error(8);
 }
 
 void	create_philos(t_data *data)
@@ -30,29 +28,29 @@ void	create_philos(t_data *data)
 	int	j;
 
 	j = 0;
-	data->forks = malloc(sizeof(pthread_mutex_t) * data->philos_number);
 	data->philos = malloc(sizeof(t_philo) * data->philos_number);
 	data->start_time = ft_gettimeday();
-	init_forks(data);
+	init_semaphore(data);
 	while (j < data->philos_number)
 	{
 		data->philos[j].id = j + 1;
 		data->philos[j].eat_number = 0;
 		data->philos[j].last_eat = data->start_time;
-		data->philos[j].left_hand = &data->forks[j];
-		if (data->philos[j].id != data->philos_number)
-			data->philos[j].right_hand = &data->forks[j + 1];
-		else
-		{
-			data->philos[j].right_hand = &data->forks[(j + 1) % \
-			data->philos_number];
-		}
 		data->philos[j].data = data;
+		data->philos[j].pid = fork();
+		if (data->philos[j].pid == -1)
+			app_error(8);
+		else if (data->philos[j].pid == 0)
+		{
+			pthread_create(data->philos[j].thread, NULL, check_philo_dead, data);
+			pthread_detach(data->philos[j].thread);
+		}
 		j += 1;
 	}
+	// Here i should listen if a process exited with other status than 0 so i could kill all the processes.
 }
 
-void	check_philo_dead(t_data *data)
+void	*check_philo_dead(t_data *data)
 {
 	int	i;
 
@@ -60,7 +58,7 @@ void	check_philo_dead(t_data *data)
 	while (i < data->philos_number)
 	{
 		if (check_philo_dies(&data->philos[i]))
-			break ;
+			exit(1); // Later i should listen on this status code to see which process has exited
 		i += 1;
 		if (i == data->philos_number)
 		{
@@ -69,18 +67,5 @@ void	check_philo_dead(t_data *data)
 			i = 0;
 		}
 	}
-}
-
-void	start_sim(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->philos_number)
-	{
-		pthread_create(&data->philos[i].thread, NULL, philo, &data->philos[i]);
-		pthread_detach(data->philos[i].thread);
-		i += 1;
-	}
-	check_philo_dead(data);
+	return (NULL);
 }
