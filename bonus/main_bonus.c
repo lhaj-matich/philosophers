@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:22:19 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/08 13:56:35 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:44:34 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_data	*init_data(void)
 	data->must_eat_number = -1;
 	return (data);
 }
-
 
 int	main(int argc, char **argv)
 {

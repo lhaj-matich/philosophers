@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:37:09 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/08 13:46:18 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:44:16 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,8 @@ long long	ft_gettimeday(void)
 
 void	print_message(long time, t_philo *philo, char *state)
 {
-	// Here should be a semaphore
+	sem_wait(philo->data->print);
 	printf("%ld %d %s\n", time, philo->id, state);
 	if (philo->data->finished != 1)
-		write(1, "c", 1);
-		// Here where i should unlock the semaphore
+		sem_post(philo->data->print);
 }

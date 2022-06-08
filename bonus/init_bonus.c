@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:34:49 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/08 13:58:21 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:43:21 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	create_philos(t_data *data)
 		{
 			pthread_create(data->philos[j].thread, NULL, check_philo_dead, data);
 			pthread_detach(data->philos[j].thread);
+			philo(&data->philos[j]);
 		}
 		j += 1;
 	}
@@ -58,7 +59,7 @@ void	*check_philo_dead(t_data *data)
 	while (i < data->philos_number)
 	{
 		if (check_philo_dies(&data->philos[i]))
-			exit(1); // Later i should listen on this status code to see which process has exited
+			exit(1);
 		i += 1;
 		if (i == data->philos_number)
 		{

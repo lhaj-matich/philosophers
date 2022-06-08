@@ -6,27 +6,29 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:35:44 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/08 14:01:43 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/06/08 14:41:38 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	eating(t_data *data)
+void	eating(t_philo *philo)
 {
 	char	*ms;
 	char	*ms2;
 
 	ms = "is eating";
 	ms2 = "has taken a fork";
-	//! The code below needs to be redone.
-	// sem_wait(data->fo)
-	// print_message((ft_gettimeday() - philo->data->start_time), philo, ms2);
-	// print_message((ft_gettimeday() - philo->data->start_time), philo, ms2);
-	// philo->last_eat = ft_gettimeday();
-	// philo->eat_number += 1;
-	// print_message((ft_gettimeday() - philo->data->start_time), philo, ms);
-	// ft_sleep(philo->data->time_to_eat);
+	sem_wait(philo->data->forks);
+	print_message((ft_gettimeday() - philo->data->start_time), philo, ms2);
+	sem_wait(philo->data->forks);
+	print_message((ft_gettimeday() - philo->data->start_time), philo, ms2);
+	philo->last_eat = ft_gettimeday();
+	philo->eat_number += 1;
+	print_message((ft_gettimeday() - philo->data->start_time), philo, ms);
+	ft_sleep(philo->data->time_to_eat);
+	sem_post(philo->data->forks);
+	sem_post(philo->data->forks);
 }
 
 void	thinking(t_philo *philo)
