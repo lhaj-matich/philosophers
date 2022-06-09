@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_philo.c                                       :+:      :+:    :+:   */
+/*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:34:49 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/08 14:43:21 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:27:48 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	create_philos(t_data *data)
 		}
 		j += 1;
 	}
+	//
 	// Here i should listen if a process exited with other status than 0 so i could kill all the processes.
 }
 
@@ -56,11 +57,10 @@ void	*check_philo_dead(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < data->philos_number)
+	while (1)
 	{
 		if (check_philo_dies(&data->philos[i]))
 			exit(1);
-		i += 1;
 		if (i == data->philos_number)
 		{
 			if (data->must_eat_number != -1 && check_end_simulation(data))

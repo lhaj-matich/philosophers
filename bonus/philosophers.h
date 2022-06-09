@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:38:05 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/08 14:03:03 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:35:13 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <semaphore.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <sys/wait.h>
 # include <unistd.h>
-# include <string.h>
-# include <semaphore.h>
 # include <fcntl.h>
 
 # define FORKS_SEM "PHILO_FORKS"

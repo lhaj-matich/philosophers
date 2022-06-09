@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:35:44 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/08 14:41:38 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:23:31 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	philo(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 		ft_sleep(50);
-	while (philo->data->finished != 1)
+	while (1) // I think this should be changed to while (1)
 	{
 		eating(philo);
 		sleeping(philo);

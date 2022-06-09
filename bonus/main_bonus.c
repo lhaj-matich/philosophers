@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:22:19 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/08 14:44:34 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:41:29 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,43 @@ t_data	*init_data(void)
 	return (data);
 }
 
+
+void	ft_kill(t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (i < data->philos_number)
+	{
+		
+	}
+}
+
+void	process_exit(t_data *data, int status, int n)
+{
+	if (n == 0)
+		return ;
+	waitpid(-1, &status,  0);
+	if (WIFEXITED(status))
+	{
+		if (WEXITSTATUS(status) == 0)
+			return (process_exit(data, status, n - 1));
+		else
+			ft_kill(data);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	*data;
+	int status;
 
 	if (argc >= 5)
 	{
 		data = init_data();
 		parse_args(argc, argv, data);
 		create_philos(data);
-		start_sim(data);
-		free_simulation(data);
+		process_exit(data, status, data->philos_number);
 	}
 	else
 		app_error(2);
