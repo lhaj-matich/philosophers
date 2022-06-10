@@ -32,7 +32,8 @@ void	ft_kill(t_data *data)
 	i = 0;
 	while (i < data->philos_number)
 	{
-		
+		kill(data->philos[i].pid, SIGKILL);
+		i++;
 	}
 }
 
@@ -55,6 +56,7 @@ int	main(int argc, char **argv)
 	t_data	*data;
 	int status;
 
+	status = 0;
 	if (argc >= 5)
 	{
 		data = init_data();

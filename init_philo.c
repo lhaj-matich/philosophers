@@ -65,7 +65,7 @@ void	check_philo_dead(t_data *data)
 		if (i == data->philos_number)
 		{
 			if (data->must_eat_number != -1 && check_end_simulation(data))
-				exit(0);
+				return ;
 			i = 0;
 		}
 	}

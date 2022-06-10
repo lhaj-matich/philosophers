@@ -28,9 +28,9 @@ void	create_philos(t_data *data)
 	int	j;
 
 	j = 0;
-	data->philos = malloc(sizeof(t_philo) * data->philos_number);
-	data->start_time = ft_gettimeday();
 	init_semaphore(data);
+	data->start_time = ft_gettimeday();
+	data->philos = malloc(sizeof(t_philo) * data->philos_number);
 	while (j < data->philos_number)
 	{
 		data->philos[j].id = j + 1;
@@ -42,31 +42,31 @@ void	create_philos(t_data *data)
 			app_error(8);
 		else if (data->philos[j].pid == 0)
 		{
-			pthread_create(data->philos[j].thread, NULL, check_philo_dead, data);
-			pthread_detach(data->philos[j].thread);
+			pthread_create(&data->philos[j].thread, NULL, check_philo_dead, &data->philos[j]);
 			philo(&data->philos[j]);
+			// pthread_detach(data->philos[j].thread);
 		}
 		j += 1;
 	}
-	//
-	// Here i should listen if a process exited with other status than 0 so i could kill all the processes.
 }
 
-void	*check_philo_dead(t_data *data)
+void	*check_philo_dead(void *args)
 {
 	int	i;
+	t_philo *philo;
 
 	i = 0;
+	philo = args;
 	while (1)
 	{
-		if (check_philo_dies(&data->philos[i]))
+		if (check_philo_dies(philo))
 			exit(1);
-		if (i == data->philos_number)
-		{
-			if (data->must_eat_number != -1 && check_end_simulation(data))
-				exit(0);
-			i = 0;
-		}
+		// if (i == philo->data->philos_number)
+		// {
+		// 	if (philo->data->must_eat_number != -1 && check_end_simulation(philo->data))
+		// 		exit(0);
+		// 	i = 0;
+		// }
 	}
 	return (NULL);
 }

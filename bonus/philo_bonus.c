@@ -52,7 +52,7 @@ void	philo(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 		ft_sleep(50);
-	while (1) // I think this should be changed to while (1)
+	while (1)
 	{
 		eating(philo);
 		sleeping(philo);

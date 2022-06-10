@@ -17,9 +17,8 @@ int	check_philo_dies(t_philo *philo)
 	long long	timestamp;
 
 	timestamp = ft_gettimeday() - philo->last_eat;
-	if (timestamp > philo->data->time_to_die && philo->data->finished != 1)
+	if (timestamp > philo->data->time_to_die)
 	{
-		philo->data->finished = 1;
 		print_message(ft_gettimeday() - philo->data->start_time, philo, "died");
 		return (1);
 	}
@@ -38,6 +37,5 @@ int	check_end_simulation(t_data *data)
 		else
 			return (0);
 	}
-	data->finished = 1;
 	return (1);
 }
