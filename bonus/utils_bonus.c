@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:37:09 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/08 14:44:16 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/06/11 13:58:26 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ void	print_message(long time, t_philo *philo, char *state)
 {
 	sem_wait(philo->data->print);
 	printf("%ld %d %s\n", time, philo->id, state);
-	if (philo->data->finished != 1)
+	if (strcmp(state, "died") != 0)
 		sem_post(philo->data->print);
 }
