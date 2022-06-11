@@ -46,7 +46,7 @@ typedef struct s_philo
 	int				id;
 	int				pid;
 	int				eat_number;
-	int				thinking;
+	int				died;
 	long long		last_eat;
 	pthread_t		thread;
 	t_data			*data;
@@ -59,7 +59,7 @@ void		app_error(int code);
 int			ft_atoi(const char *str);
 int			check_philo_dies(t_philo *philo);
 void		*check_philo_dead(void *args);
-int			check_end_simulation(t_data *data);
+int			check_end_simulation(t_philo *philo);
 long long	ft_gettimeday(void);
 void		ft_sleep(long time);
 void		create_philos(t_data *data);

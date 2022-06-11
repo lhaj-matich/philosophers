@@ -16,9 +16,9 @@ void	init_semaphore(t_data *data)
 {
 	sem_unlink(FORKS_SEM);
 	sem_unlink(PRINT_SEM);
-
 	data->print = sem_open(PRINT_SEM, O_CREAT | O_EXCL, 0644, 1);
-	data->forks = sem_open(FORKS_SEM, O_CREAT | O_EXCL, 0644 , data->philos_number);
+	data->forks = sem_open(FORKS_SEM, O_CREAT | O_EXCL, 0644, \
+	data->philos_number);
 	if (data->print == SEM_FAILED || data->forks == SEM_FAILED)
 		app_error(8);
 }
@@ -42,9 +42,9 @@ void	create_philos(t_data *data)
 			app_error(8);
 		else if (data->philos[j].pid == 0)
 		{
-			pthread_create(&data->philos[j].thread, NULL, check_philo_dead, &data->philos[j]);
+			pthread_create(&data->philos[j].thread, NULL, \
+			check_philo_dead, &data->philos[j]);
 			philo(&data->philos[j]);
-			// pthread_detach(data->philos[j].thread);
 		}
 		j += 1;
 	}
@@ -52,8 +52,8 @@ void	create_philos(t_data *data)
 
 void	*check_philo_dead(void *args)
 {
-	int	i;
-	t_philo *philo;
+	int		i;
+	t_philo	*philo;
 
 	i = 0;
 	philo = args;
@@ -61,12 +61,6 @@ void	*check_philo_dead(void *args)
 	{
 		if (check_philo_dies(philo))
 			exit(1);
-		// if (i == philo->data->philos_number)
-		// {
-		// 	if (philo->data->must_eat_number != -1 && check_end_simulation(philo->data))
-		// 		exit(0);
-		// 	i = 0;
-		// }
 	}
 	return (NULL);
 }

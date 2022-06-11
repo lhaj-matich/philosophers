@@ -24,10 +24,9 @@ t_data	*init_data(void)
 	return (data);
 }
 
-
 void	ft_kill(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->philos_number)
@@ -41,7 +40,7 @@ void	process_exit(t_data *data, int status, int n)
 {
 	if (n == 0)
 		return ;
-	waitpid(-1, &status,  0);
+	waitpid(-1, &status, 0);
 	if (WIFEXITED(status))
 	{
 		if (WEXITSTATUS(status) == 0)
@@ -53,8 +52,8 @@ void	process_exit(t_data *data, int status, int n)
 
 int	main(int argc, char **argv)
 {
+	int		status;
 	t_data	*data;
-	int status;
 
 	status = 0;
 	if (argc >= 5)

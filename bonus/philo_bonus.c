@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:35:44 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/09 11:23:31 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/06/11 13:44:13 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	philo(t_philo *philo)
 		ft_sleep(50);
 	while (1)
 	{
+		if (philo->data->must_eat_number != -1 && check_end_simulation(philo))
+			exit(1);
 		eating(philo);
 		sleeping(philo);
 		thinking(philo);

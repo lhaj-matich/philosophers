@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:32:30 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/08 13:19:41 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/06/11 13:44:42 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,12 @@ int	check_philo_dies(t_philo *philo)
 	return (0);
 }
 
-int	check_end_simulation(t_data *data)
+int	check_end_simulation(t_philo *philo)
 {
 	int	i;
 
 	i = 0;
-	while (i < data->philos_number)
-	{
-		if (data->philos[i].eat_number >= data->must_eat_number)
-			i++;
-		else
-			return (0);
-	}
-	return (1);
+	if (philo->eat_number >= philo->data->must_eat_number + 1)
+		return (1);
+	return (0);
 }
