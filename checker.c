@@ -17,14 +17,12 @@ int	check_philo_dies(t_philo *philo)
 	long long	timestamp;
 
 	timestamp = ft_gettimeday() - philo->last_eat;
-	// pthread_mutex_lock(&philo->data->check);
 	if (timestamp > philo->data->time_to_die && philo->data->finished != 1)
 	{
 		philo->data->finished = 1;
 		print_message(ft_gettimeday() - philo->data->start_time, philo, "died");
 		return (1);
 	}
-	// pthread_mutex_unlock(&philo->data->check);
 	return (0);
 }
 

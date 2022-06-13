@@ -43,7 +43,6 @@ void	sleeping(t_philo *philo)
 {
 	char	*ms;
 
-
 	ms = "is sleeping";
 	print_message(ft_gettimeday() - philo->data->start_time, philo, ms);
 	ft_sleep(philo->data->time_to_sleep);

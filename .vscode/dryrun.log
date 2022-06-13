@@ -1,0 +1,11 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/ochoumou/Work/philosophers'
+gcc -Wall -Wextra -Werror -o main.o -c main.c
+gcc -Wall -Wextra -Werror -o init_philo.o -c init_philo.c
+gcc -Wall -Wextra -Werror -o parse.o -c parse.c
+gcc -Wall -Wextra -Werror -o philo.o -c philo.c
+gcc -Wall -Wextra -Werror -o utils.o -c utils.c
+gcc -Wall -Wextra -Werror -o checker.o -c checker.c
+gcc -Wall -Wextra -Werror main.o init_philo.o parse.o philo.o utils.o checker.o -o philo
+make: Leaving directory `/Users/ochoumou/Work/philosophers'
+ 

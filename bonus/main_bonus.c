@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:22:19 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/09 13:41:29 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/06/13 13:38:50 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	main(int argc, char **argv)
 		parse_args(argc, argv, data);
 		create_philos(data);
 		process_exit(data, status, data->philos_number);
+		end_simulation(data);
 	}
 	else
 		app_error(2);

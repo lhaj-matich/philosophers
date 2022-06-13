@@ -1,9 +1,9 @@
-NAME = philo
+NAME = philo_bonus
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall 
 HEADER = philosophers.h
 
-SRC = main_bonus.c init_bonus.c parse_bonus.c philo_bonus.c utils_bonus.c checker_bonus.c
+SRC = main_bonus.c init_bonus.c parse_bonus.c philo_bonus.c utils_bonus.c checker_bonus.c strcmp.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

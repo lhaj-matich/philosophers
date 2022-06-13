@@ -23,6 +23,17 @@ void	init_semaphore(t_data *data)
 		app_error(8);
 }
 
+void	end_simulation(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	sem_close(data->forks);
+	sem_close(data->print);
+	free(data->philos);
+	free(data);
+}
+
 void	create_philos(t_data *data)
 {
 	int	j;

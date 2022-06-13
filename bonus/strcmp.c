@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_bonus.c                                    :+:      :+:    :+:   */
+/*   strcmp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 13:32:30 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/13 13:23:27 by ochoumou         ###   ########.fr       */
+/*   Created: 2022/06/13 13:23:02 by ochoumou          #+#    #+#             */
+/*   Updated: 2022/06/13 13:27:14 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	check_philo_dies(t_philo *philo)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	long long	timestamp;
-
-	timestamp = ft_gettimeday() - philo->last_eat;
-	if (timestamp > philo->data->time_to_die)
-	{
-		print_message(ft_gettimeday() - philo->data->start_time, philo, "died");
-		return (1);
-	}
-	return (0);
-}
-
-int	check_end_simulation(t_philo *philo)
-{
-	int	i;
+	size_t	i;
 
 	i = 0;
-	if (philo->eat_number >= philo->data->must_eat_number + 1)
-		return (1);
-	return (0);
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
