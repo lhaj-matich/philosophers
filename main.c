@@ -6,7 +6,7 @@
 /*   By: ochoumou <ochoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 13:22:19 by ochoumou          #+#    #+#             */
-/*   Updated: 2022/06/08 14:03:55 by ochoumou         ###   ########.fr       */
+/*   Updated: 2022/06/23 14:47:06 by ochoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	main(int argc, char **argv)
 	if (argc >= 5)
 	{
 		data = init_data();
+		if (!data)
+			return (0);
 		parse_args(argc, argv, data);
 		create_philos(data);
 		start_sim(data);

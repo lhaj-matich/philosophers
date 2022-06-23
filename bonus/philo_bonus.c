@@ -55,7 +55,7 @@ void	philo(t_philo *philo)
 	while (1)
 	{
 		if (philo->data->must_eat_number != -1 && check_end_simulation(philo))
-			exit(1);
+			exit(0);
 		eating(philo);
 		sleeping(philo);
 		thinking(philo);

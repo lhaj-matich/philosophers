@@ -44,8 +44,8 @@ void	create_philos(t_data *data)
 			data->philos[j].right_hand = &data->forks[j + 1];
 		else
 		{
-			data->philos[j].right_hand = &data->forks[(j + 1) % \
-			data->philos_number];
+			data->philos[j].right_hand = &data->forks[(j + 1) \
+			% data->philos_number];
 		}
 		data->philos[j].data = data;
 		j += 1;

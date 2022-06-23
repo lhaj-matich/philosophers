@@ -30,7 +30,6 @@ void	app_error(int code)
 		printf("Error: Invalid time to eat\n");
 	else if (code == 7)
 		printf("Error: Invalid numbers of time that a philosopher should eat\n");
-	exit(1);
 }
 
 int	ft_atoi(const char *str)
